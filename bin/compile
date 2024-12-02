@@ -14,12 +14,14 @@ function indent() {
 
 unset GIT_DIR
 
-if [ -z "$BUILD_PACKS" ]; then
-  echo "Error: BUILD_PACKS variable is not set. Please provide a list of buildpacks."
+echo "BUILDPACKS: $BUILDPACKS"
+
+if [ -z "$BUILDPACKS" ]; then
+  echo "Error: BUILDPACKS variable is not set. Please provide a list of buildpacks."
   exit 1
 fi
 
-for BUILDPACK in $BUILD_PACKS; do
+for BUILDPACK in $BUILDPACKS; do
   dir=$(mktemp -t buildpackXXXXX)
   rm -rf $dir
 
