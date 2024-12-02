@@ -12,9 +12,16 @@ function indent() {
   esac
 }
 
+echo "BUILDPACKS: $BUILDPACKS"
+
+if [ -z "$BUILDPACKS" ]; then
+  echo "Error: BUILDPACKS variable is not set. Please provide a list of buildpacks."
+  exit 1
+fi
+
 unset GIT_DIR
 
-for BUILDPACK in $(cat $1/.buildpacks); do
+for BUILDPACK in $BUILDPACKS; do
   dir=$(mktemp -t buildpackXXXXX)
   rm -rf $dir
 
